@@ -1,0 +1,72 @@
+<?php
+
+/**
+ * @files
+ * Csas modal
+ */
+
+function csas_modal_menu() {
+  $items['csas-modal-example'] = array(
+    'title' => 'Csas modal example',
+    'page callback' => 'csas_modal_example',
+    'access arguments' => array('administer site configuration'),
+    'file' => 'csas_modal.pages.inc',
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+function csas_modal_theme() {
+  return array(
+    'csas_modal_example' => array(
+      'variables' => array(
+        'opt' => NULL
+      ),
+      'template' => 'csas_modal_example',
+    ),
+    'csas_modal_view' => array(
+      'variables' => array(
+        'opt' => NULL
+      ),
+      'template' => 'csas_modal_view',
+    ),
+
+  );
+}
+
+function template_preprocess_csas_modal_view(&$vars) {
+  $m_path = drupal_get_path('module', 'csas_modal');
+  //drupal_add_css($m_path . '/csas_modal.css');
+  _csas_modal_add_css('csas_modal.css');
+
+  if (empty($vars['opt']['mde'])) {
+    $vars['opt']['mde'] = 'bse';
+  }
+  $vars['opt']['id'] = drupal_html_id('csas-modal');
+  $vars['opt']['link_id'] = drupal_html_id('csas-modal-link');
+  if (empty($vars['opt']['link_title'])) {
+    $vars['opt']['link_title'] = t('Link title');
+  }
+  if (empty($vars['opt']['link_class'])) {
+    $vars['opt']['link_class'] = '';
+  }
+  if (empty($vars['opt']['content'])) {
+    $vars['opt']['content'] = t('Content');
+  }
+  if (empty($vars['opt']['class'])) {
+    $vars['opt']['class'] = '';
+  }
+}
+
+function _csas_modal_add_css($fle = '') {
+  global $theme;
+  $pth = drupal_get_path('theme', $theme);
+  $dta = $pth . '/css/' . $theme . '.' . $fle;
+  if (file_exists($dta)) {
+    drupal_add_css($dta);
+  }
+  else {
+    $pth = drupal_get_path('module', 'csas_modal');
+    drupal_add_css($pth . "/css/{$fle}");
+  }
+}

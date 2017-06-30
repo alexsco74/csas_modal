@@ -1,0 +1,5 @@
+name = Csas modal
+description = Csas modal
+package = Csas
+version = VERSION
+core = 7.x

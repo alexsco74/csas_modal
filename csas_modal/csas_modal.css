@@ -1,0 +1,64 @@
+.csas-modal-pop-up {
+    display: none;
+}
+
+.csas-modal-pop-up:target {
+    display: block;
+}
+
+:target .csas-modal-popBox {
+    position: fixed;
+    opacity: 1;
+}
+
+.csas-modal-popBox {
+    position:absolute;
+    background: #fff;
+    left: 2%;
+    right: 2%;
+    top: 5%;
+    bottom: 5%;
+    z-index: 9999999;
+    transition: opacity .5s ease-in-out;
+}
+
+:target .csas-modal-popBox {
+    position: fixed;
+}
+
+.csas-modal-lightbox {
+    background: #000;
+    opacity: .5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 999999;
+}
+
+.csas-modal-close:link,
+.csas-modal-close:visited {
+    position: absolute;
+    top: -1.7em;
+    right: -1.7em;
+    display: block;
+    width: 2em;
+    height: 2em;
+    padding: 0;
+    text-decoration: none;
+    background:#fff;
+}
+
+.csas-modal-popScroll{
+   height:100%;
+   width:100%;
+   padding:3px;
+}
+
+.csas-modal-popScroll .csas-modal-inner {
+    height:100%;
+    overflow-x:hidden;
+    overflow-y: auto;
+    *overflow-y: auto;
+}
